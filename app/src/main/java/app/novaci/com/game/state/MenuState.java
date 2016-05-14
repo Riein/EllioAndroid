@@ -33,18 +33,23 @@ public class MenuState extends State {
 
     @Override
     public boolean onTouch(MotionEvent e, int scaledX, int scaledY) {
-        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+        Log.d("MenuState", "Touched Down!");
+        if(e.getAction() == MotionEvent.ACTION_DOWN) {
             playButton.onTouchDown(scaledX, scaledY);
             scoreButton.onTouchDown(scaledX, scaledY);
         }
-        if (e.getAction() == MotionEvent.ACTION_UP) {
+
+        if(e.getAction() == MotionEvent.ACTION_UP) {
+            // If the play button is active and the release was within the play button:
             if (playButton.isPressed(scaledX, scaledY)) {
                 playButton.cancel();
+                Log.d("MenuState", "Play button Pressed!");
                 setCurrentState(new PlayState());
             } else if (scoreButton.isPressed(scaledX, scaledY)) {
                 scoreButton.cancel();
-                //setCurrentState(new ScoreState());
+                Log.d("MenuState", "Score Button Pressed!");
             } else {
+                // Cancel all actions.
                 playButton.cancel();
                 scoreButton.cancel();
             }

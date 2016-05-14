@@ -36,6 +36,7 @@ public class Animation {
 
     private synchronized void wrapAnimation() {
         currentFrameIndex = 0;
+        currentTime %= totalDuration;
     }
 
     public synchronized void render(Painter g, int x, int y) {

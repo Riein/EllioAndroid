@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
 import app.novaci.com.framework.util.InputHandler;
@@ -39,7 +40,7 @@ public class GameView extends SurfaceView  implements Runnable{
         graphics = new Painter(gameCanvas);
 
         SurfaceHolder holder = getHolder();
-        holder.addCallback(new SurfaceHolder.Callback() {
+        holder.addCallback(new Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 initInput();
@@ -61,9 +62,9 @@ public class GameView extends SurfaceView  implements Runnable{
         });
     }
 
-    public GameView(Context context) {
-        super(context);
-    }
+    //public GameView(Context context) {
+    //    super(context);
+    //}
 
     public void setCurrentState(State newState) {
         System.gc();
@@ -119,7 +120,7 @@ public class GameView extends SurfaceView  implements Runnable{
     }
 
     private void updateAndRender(long delta) {
-        currentState.update(delta);
+        currentState.update(delta / 1000f);
         currentState.render(graphics);
         renderGameImage();
     }
