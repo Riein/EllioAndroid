@@ -26,7 +26,7 @@ public class PlayState  extends State{
     private int playerScore = 0;
 
     private static final int BLOCK_HEIGHT = 50;
-    private static final int BLOCK_WIDTH = 20;
+    private static final int BLOCK_WIDTH = 50;
     private int blockSpeed = -200;
 
     private static final int PLAYER_WIDTH = 66;
@@ -67,7 +67,8 @@ public class PlayState  extends State{
     }
 
     private void updateBlocks(float delta) {
-        for (Block b : blocks) {
+        for (int i = 0; i < blocks.size(); i++) {
+            Block b = blocks.get(i);
             b.update(delta, blockSpeed);
 
             if (b.isVisible()) {
@@ -112,7 +113,8 @@ public class PlayState  extends State{
     }
 
     private void renderBlocks(Painter g) {
-        for (Block b : blocks) {
+        for (int i = 0; i < blocks.size(); i++) {
+            Block b = blocks.get(i);
             if (b.isVisible()) {
                 g.drawImage(Assets.block, (int) b.getX(), (int) b.getY(), BLOCK_WIDTH, BLOCK_HEIGHT);
             }

@@ -48,6 +48,7 @@ public class MenuState extends State {
             } else if (scoreButton.isPressed(scaledX, scaledY)) {
                 scoreButton.cancel();
                 Log.d("MenuState", "Score Button Pressed!");
+                setCurrentState(new ScoreState());
             } else {
                 // Cancel all actions.
                 playButton.cancel();
